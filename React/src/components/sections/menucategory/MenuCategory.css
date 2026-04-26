@@ -1,0 +1,87 @@
+
+
+/* TOGGLE */
+.toggle-bar {
+  margin-bottom: 10px;
+}
+
+.toggle-bar button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.top-bar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #f3d6b6;
+}
+
+.add-btn {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* CARDS */
+.card-container {
+
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.card {
+  width: 120px;
+  background: #dfe9e7;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  border: none;
+  box-shadow: 0 2px 4px rgba(173, 195, 236, 0.995);
+}
+
+.card img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edit {
+  color: green;
+  cursor: pointer;
+}
+
+.delete {
+  color: red;
+  cursor: pointer;
+}
+
+.restore-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+

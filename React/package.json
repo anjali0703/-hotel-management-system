@@ -1,0 +1,78 @@
+{
+  "name": "buysmartreact",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.7.4",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.11.3",
+    "cropperjs": "^1.5.12",
+    "date-fns": "^4.1.0",
+    "driver.js": "^0.9.8",
+    "jquery": "^3.7.1",
+    "jquery-ui": "^1.14.0",
+    "jspdf": "^2.5.2",
+    "lucide-react": "^1.9.0",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.2",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^1.6.1",
+    "react-chartjs-2": "^2.11.2",
+    "react-confetti": "^6.2.2",
+    "react-csv": "^2.2.2",
+    "react-data-table-component": "^7.0.0-rc6",
+    "react-data-table-component-extensions": "^1.5.2",
+    "react-date-picker": "^11.0.0",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.6.0",
+    "react-meta-tags": "^1.0.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-qr-code": "^2.0.15",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.10.0",
+    "react-slick": "^0.30.2",
+    "react-tagsinput": "^3.20.3",
+    "react-tooltip": "^5.28.0",
+    "react-use": "^17.6.0",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.3",
+    "styled-components": "^5.3.11",
+    "sweetalert2": "^10.16.9",
+    "toastr": "^2.1.4",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}

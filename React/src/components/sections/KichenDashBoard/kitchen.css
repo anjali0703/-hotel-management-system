@@ -1,0 +1,49 @@
+.kitchen {
+  padding: 20px;
+}
+
+.kitchen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.order-card {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 5px solid orange;
+}
+.order-card.greeen{
+      background: #fff3cd;
+        border-left: 5px solid orange;
+}
+.order-card.red{
+      background: #cdffeb;
+        border-left: 5px solid green;
+}
+.items {
+  margin-top: 10px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.preparing {
+  background: orange;
+  color: white;
+}
+
+.ready {
+  background: green;
+  color: white;
+}

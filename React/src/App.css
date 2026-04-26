@@ -1,0 +1,2027 @@
+.user-form {
+  /* width: 60%; */
+  /* background-color: #f8f9fa; */
+  /* padding: 20px; */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  /* border: 1px solid #f2f2f2 !important; */
+}
+
+.btn-no-focus:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Responsive Styles */
+.app {
+  padding: 20px;
+}
+
+.header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .highlight {
+  color: #15BE77;
+}
+
+.header-table {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .header-table {
+    font-size: 22px;
+  }
+}
+
+.back-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #15BE7716;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-icon-menucategory {
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  background-color: #f9a84d4f;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  background-color: transparent;
+  color: #da6317;
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 5px;
+}
+.search-bar input::placeholder {
+  color: #da6317;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #DA6317;
+  cursor: pointer;
+}
+
+.search-bar .search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.search-bar .search-button img {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 1024px) {
+  .search-bar {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar input {
+    padding: 8px;
+    padding: 10px 10px 10px 40px;
+  }
+
+  .search-bar .search-button {
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .search-bar .search-button img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    gap: 4px;
+  }
+}
+
+/* MenuCategory Filter */
+.menucategory-filter {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
+
+.menucategory-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.menucategory-button {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 12px;
+  background-color: #5354523d;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.menucategory-button.active {
+  background-color: #15BE77;
+  color: white;
+}
+
+.menucategory-button img {
+  width: 30px;
+  height: 30px;
+  border-radius: 25%;
+  object-fit: cover;
+  margin-right: 6px;
+}
+
+/* Food Grid */
+/* Main grid container */
+.food-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.order-food-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* 1 card per 
+
+
+by default (mobile) */
+@media (max-width: 768px) {
+  .food-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2 cards per row for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 cards per row for desktops */
+@media (min-width: 1024px) {
+  .food-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .order-food-grid {
+    grid-template-columns: 2fr;
+  }
+}
+
+/* 2 cards per row for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .order-food-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 3 cards per row for desktops */
+@media (min-width: 1024px) {
+  .order-food-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Horizontal card layout */
+/* Horizontal card layout */
+.food-card-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #15be7716;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left side: Food details */
+.food-details {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.food-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.food-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+
+.food-description-menuitem {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Responsive: Allow multi-line truncation */
+@media (min-width: 1024px) {
+  .food-description-menuitem {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .food-description-menuitem {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+  }
+}
+
+@media (min-width:768px) and (max-width: 1024px) {
+  .food-description-menuitem {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .food-description-menuitem {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+  }
+}
+
+.food-price {
+  font-size: 16px;
+  color: #15be77;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.food-availability {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Right side: Image and button */
+.food-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Image container */
+.food-image-container {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  /* Smaller image width */
+  height: 120px;
+  /* Smaller image height */
+  border-radius: 8px;
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+/* Food image */
+.food-image-horizontal {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  bottom: -12px;
+  /* Halfway out of the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #15be77;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1;
+  /* Make sure it appears above the image */
+}
+
+.decrement-button,
+.increment-button {
+  background-color: #15be77;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.decrement-button:hover,
+.increment-button:hover {
+  background-color: #45c07c;
+}
+
+/* Item count display */
+.item-count {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Add to Cart button */
+.add-button {
+  position: absolute;
+  bottom: -12px;
+  /* Halfway out of the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #15be77;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1;
+  /* Make sure it appears above the image */
+}
+
+.add-button:hover {
+  background-color: #45c07c;
+}
+
+/* .food-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .food-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .food-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.food-card {
+  background-color: #15BE7716;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.food-card .food-image {
+  width: 110px;
+  height: 138.84px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .food-card .food-image {
+    width: 170px;
+  }
+}
+.food-card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.food-card .food-description {
+  font-size: 12px;
+  color: #888;
+}
+
+.food-card .food-price {
+  font-size: 14px;
+  color: #15BE77;
+  font-weight: bold;
+} */
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+}
+
+/* Place Order Panel */
+.place-order-panel {
+  background-color: #fff;
+  /* White background for the panel */
+  border-radius: 16px;
+  padding: 10px;
+  margin: 20px;
+  /* Added margin around the panel */
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 30px;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.order-summary {
+  color: #333;
+  /* Dark text for better contrast on white */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.place-order-panel button {
+  background-color: #15BE77;
+  /* Green button */
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.place-order-panel button:hover {
+  background-color: #128f5a;
+  /* Darker green on hover */
+}
+
+/* menucategory page */
+.popular-restaurants {
+  margin-top: 30px;
+}
+
+.restaurant-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* Responsive grid */
+  gap: 15px;
+  /* Space between cards */
+  margin-top: 10px;
+  /* Space above the grid */
+}
+
+.restaurant-card {
+  text-align: center;
+  padding: 10px;
+  background-color: #f0e9e9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  font-size: 12px;
+  color: #888;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #eef7ff;
+  /* Soft light blue color */
+}
+
+.restaurant-logo {
+  width: 110px;
+  height: 138.84px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.restaurant-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.restaurant-time {
+  color: #777;
+  font-size: 14px;
+}
+
+.MenuCategory-card {
+  background-color: #15BE7716;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.MenuCategory-card .food-image {
+  width: 110px;
+  height: 138.84px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .MenuCategory-card .food-image {
+    width: 170px;
+  }
+}
+
+.MenuCategory-card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.MenuCategory-card .food-description {
+  font-size: 12px;
+  color: #888;
+}
+
+.MenuCategory-card .food-price {
+  font-size: 14px;
+  color: #15BE77;
+  font-weight: bold;
+}
+
+/* Payment Page */
+.payment-option {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 12px;
+  border-radius: 15px;
+  justify-content: space-between;
+  align-items: self-end;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.payment-option {
+  transition: background-color 0.3s ease;
+  /* Smooth transition for the hover effect */
+}
+
+.payment-option:hover {
+  background-color: #fff;
+}
+
+.paypal-logo {
+  height: 60px;
+  width: 80px;
+  object-fit: cover;
+}
+
+.payment-next-button-container {
+  margin-top: auto;
+  /* Push the button to the bottom */
+  text-align: center;
+  /* Center align the button */
+  padding: 20px;
+}
+
+.payment-next-button {
+  position: fixed;
+  bottom: 16px;
+  /* Distance from the bottom */
+  left: 50%;
+  /* Center horizontally */
+  transform: translateX(-50%);
+  /* Adjust for the width of the button */
+  background-color: #15BE77;
+  color: white;
+  width: 140px;
+  border: none;
+  border-radius: 15px;
+  padding: 16px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+/* Order Status */
+.statuscontainer {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  /* Max width for tablets and larger screens */
+  box-sizing: border-box;
+  /* Ensure padding doesn't affect width */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* For screens that are larger than 768px (tablet and desktop) */
+@media (min-width: 768px) {
+  .statuscontainer {
+    width: 80%;
+    /* Reduce width on tablet and larger screens */
+    max-width: 600px;
+    /* Ensure it doesn't exceed 600px */
+  }
+}
+
+/* For screens that are larger than 1024px (larger desktop) */
+@media (min-width: 1024px) {
+  .statuscontainer {
+    width: 70%;
+    /* Further reduce width for larger desktops */
+    max-width: 600px;
+    /* Keep the max width */
+  }
+}
+
+/* For smaller screens (mobile) */
+@media (max-width: 767px) {
+  .statuscontainer {
+    width: 90%;
+    /* Use almost full width on mobile */
+  }
+}
+
+
+/* Ensuring content is centered inside the status container */
+.content .icon {
+  width: 80px;
+  height: 80px;
+  background-color: #15BE77;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.content .icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+}
+
+/* Add this CSS to your existing styles */
+.content .cancel-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #FF4B4B;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.content .cancel-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+}
+
+.content .prepare-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #FEAD1D;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.content .prepare-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+}
+
+.order-action-button.explore-prepare-button {
+  background-color: #FEAD1D;
+  /* Red button for cancelled order */
+  color: white;
+}
+
+/* Style for Explore More Items button when the order is cancelled */
+.order-action-button.explore-button {
+  background-color: #FF4B4B;
+  /* Red button for cancelled order */
+  color: white;
+}
+
+/* Icon color for Cancelled order status */
+.icon svg.feather-x-circle {
+  color: #FF4B4B;
+  /* Red color for cross icon */
+}
+
+/* Button container to ensure buttons are stacked vertically */
+.order-action-button-container {
+  display: flex;
+  flex-direction: column;
+  /* Stacks the buttons vertically */
+  gap: 10px;
+  /* Adds some spacing between the buttons */
+  margin-top: 20px;
+}
+
+/* Style the order-action-button to give a uniform look */
+.order-action-button {
+  background-color: #15BE77;
+  /* Default button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.order-action-button:hover {
+  background-color: #15BE77;
+}
+
+.order-action-button.explore-button:hover {
+  background-color: #ff3b3b;
+}
+
+/* Bill Page */
+
+.titleBillPage {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.bill-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.company-name {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
+}
+
+.company-details {
+  text-align: center;
+  color: #000000;
+}
+
+.address {
+  text-align: left;
+  margin: 18px 0;
+  font-size: 25px;
+  color: #000000;
+}
+
+.divider {
+  border: 0;
+  border-top: 2px dashed #0c0c0c;
+  margin: 15px 0;
+}
+
+.date,
+.cashier,
+.bill-number {
+  font-size: 15px;
+  color: #000000;
+  text-align: start;
+}
+
+.thead {
+  font-size: 15px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.bill-table {
+  width: 100%;
+  margin: 15px 0;
+  border-collapse: collapse;
+}
+
+.bill-table th,
+.bill-table td {
+  padding: 10px;
+  text-align: left;
+  border: 0px solid #eee;
+}
+
+.bill-table th {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+
+.thank-you {
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+  color: #000000;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  /* Align buttons to the right */
+  gap: 10px;
+  /* Add spacing between the buttons */
+  flex-wrap: wrap;
+  /* Allow wrapping if needed on smaller screens */
+}
+
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column;
+    /* Stack buttons vertically on smaller screens */
+    align-items: center;
+    /* Center the buttons horizontally on smaller screens */
+  }
+}
+
+.print-button,
+.feedback-button {
+  background-color: #23c77c;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  /* width: 160px; */
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  /* Ensures text inside the button is centered */
+}
+
+.print-button:hover,
+.feedback-button:hover {
+  background-color: #5eaa56;
+}
+
+@media (max-width: 768px) {
+
+  .print-button,
+  .feedback-button {
+    width: 160px;
+    /* Ensure consistent width on mobile */
+    padding: 12px;
+    /* Adjust padding on mobile if needed */
+  }
+}
+
+
+.totals {
+  display: flex;
+  justify-content: space-between;
+  /* Spaces out the two items */
+  align-items: center;
+  /* Vertically aligns the items */
+  font-size: 15px;
+  color: #000000;
+}
+
+.totals h6 {
+  margin: 0;
+  /* Removes default margin from h6 */
+  padding-right: 20px;
+  /* Adds spacing between elements */
+  font-size: 15px;
+  color: #000000;
+}
+
+.print-button:hover {
+  background-color: #5eaa56;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .titleBillPage {
+    font-size: 22px;
+  }
+
+  .company-name {
+    font-size: 20px;
+  }
+
+  .company-details,
+  .address {
+    font-size: 23px;
+  }
+
+  .bill-table th,
+  .bill-table td {
+    font-size: 15px;
+    color: #000000;
+  }
+
+  .thank-you {
+    font-size: 21px;
+    color: #000000;
+    font-weight: bold;
+  }
+}
+
+.highlight {
+  color: #15BE77;
+}
+
+@media print {
+
+  /* Hide the back icon and print button during print */
+  .feedback-button,
+  .back-icon,
+  .print-button {
+    display: none !important;
+  }
+
+  /* Optionally, you can also hide other elements you don't want to print */
+  .thank-you {
+    display: none;
+  }
+
+  /* Ensure content is properly styled for print */
+  .content-container {
+    margin: 0;
+    padding: 20px;
+  }
+
+  .bill-info {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .bill-table th,
+  .bill-table td {
+    padding: 8px;
+  }
+}
+
+
+/* Order Confirm */
+.empty-order-container {
+  display: flex;
+  justify-content: center;
+  /* Centers horizontally */
+  align-items: center;
+  /* Centers vertically */
+  height: 100vh;
+  /* Full viewport height */
+  text-align: center;
+  padding: 20px;
+}
+
+
+/* Feedback */
+.feedback-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 5px;
+}
+
+.logo h2 {
+  width: 200px;
+  height: 200px;
+  /* Ensure the image remains a perfect circle */
+  border-radius: 50%;
+  /* Makes the image round */
+  border: 7px solid #1ac278;
+  /* Adds a green border directly around the logo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for a lightweight look */
+  display: block;
+  /* Ensures proper alignment */
+  margin: 0 auto;
+  /* Centers the logo inside its container */
+  align-content: center;
+  font-weight: bold;
+}
+
+.content h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.stars {
+  display: flex;
+  /* Align stars in a row */
+  justify-content: center;
+  /* Center align the stars */
+  gap: 8px;
+  /* Add spacing between the stars */
+}
+
+.star {
+  font-size: 50px;
+  /* Adjust star size */
+  color: #ccc;
+  /* Light gray for unselected stars */
+  cursor: pointer;
+  /* Pointer cursor for interactivity */
+  transition: color 0.3s ease;
+  /* Smooth color transition */
+}
+
+.star.filled {
+  color: #FFD700;
+  /* Gold color for selected stars */
+}
+
+.star:hover,
+.star.filled:hover {
+  color: #FFA500;
+  /* Bright orange on hover */
+  transform: scale(1.2);
+  /* Slightly enlarge on hover */
+}
+
+.feedback {
+  margin-bottom: 20px;
+}
+
+.feedback input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.FeedbackSubmit-button {
+  position: fixed;
+  bottom: 16px;
+  /* Distance from the bottom */
+  left: 50%;
+  /* Center horizontally */
+  transform: translateX(-50%);
+  /* Adjust for the width of the button */
+  background-color: #15BE77;
+  color: white;
+  width: 140px;
+  border: none;
+  border-radius: 15px;
+  padding: 16px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .print-button {
+    width: 120px;
+    /* Adjust width on mobile if needed */
+    padding: 12px;
+    /* Adjust padding on mobile if needed */
+  }
+}
+
+.submit {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit:hover {
+  background-color: #218838;
+}
+
+.skip {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.skip:hover {
+  background-color: #e2e6ea;
+}
+
+.muted-text {
+  color: #aaa;
+  /* Muted gray */
+  font-size: 16px;
+  /* Adjust size if needed */
+}
+
+.edit-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1ec37a;
+  cursor: pointer;
+}
+
+.search-bar-feedback {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.search-bar-feedback input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  background-color: transparent;
+  color: #b6afaf;
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 5px;
+}
+
+.modal-min .modal-body i::before {
+  color: #15BE77
+}
+
+/* For individual filter items (checkboxes with icons) */
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  /* Space between each item */
+}
+
+/* Icon styling */
+.filter-icon {
+  margin-right: 8px;
+  /* Space between icon and checkbox */
+}
+
+/* Checkbox styling */
+.filter-checkbox {
+  margin-right: 8px;
+  /* Space between checkbox and text */
+}
+
+/* Login Page */
+
+.login-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  /* width: 80px; */
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.social-button {
+  width: 45%;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.social-button.facebook {
+  background-color: #fff;
+  color: #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-button.google {
+  background-color: #fff;
+  color: #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-button:hover {
+  opacity: 0.8;
+}
+
+.forgot-password {
+  display: block;
+  margin: 10px 0;
+  font-size: 12px;
+  color: #1fc57a;
+  text-decoration: none;
+  margin-top: 30px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  background-color: #23c77c;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  width: 160px;
+  border-radius: 11px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-button:hover {
+  background-color: #218838;
+}
+
+.facebookLogo {
+  width: 30%;
+}
+
+.logo-container h2 {
+  width: 150px;
+  height: 150px;
+  /* Ensure the image remains a perfect circle */
+  border-radius: 50%;
+  /* Makes the image round */
+  border: 7px solid #1ac278;
+  /* Adds a green border directly around the logo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for a lightweight look */
+  display: block;
+  /* Ensures proper alignment */
+  margin: 0 auto;
+  /* Centers the logo inside its container */
+  align-content: center;
+  font-weight: bold;
+}
+
+.logo-container {
+  margin-bottom: 25px;
+}
+
+/* Dashboard */
+.dashboard-food-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* 1 card per row by default (mobile) */
+@media (max-width: 768px) {
+  .dashboard-food-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2 cards per row for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .dashboard-food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 cards per row for desktops */
+@media (min-width: 1024px) {
+  .dashboard-food-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Dashboard */
+.dashboard-header-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  /* Ensures even spacing */
+  align-items: stretch;
+  /* Makes all cards the same height */
+  padding: 10px;
+  width: 100%;
+}
+
+/* Card Styling */
+.dashboard-header-grid .food-card-horizontal {
+  flex: 1 1 calc(16.66% - 20px);
+  /* 6 items per row (ensures even fit) */
+  /* max-width: 250px; */
+  max-width: 450px;
+  /* Prevents cards from growing too large */
+  /* min-width: 250px;  */
+  /* Prevents shrinking too much */
+  transition: transform 0.2s ease-in-out;
+}
+
+.dashboard-header-grid .food-card-horizontal:hover {
+  transform: scale(1.02);
+  /* Subtle hover effect */
+}
+
+/* Tablet View: 3 items per row */
+@media (max-width: 1024px) {
+  .dashboard-header-grid {
+    justify-content: center;
+  }
+
+  .dashboard-header-grid .food-card-horizontal {
+    flex: 1 1 calc(33.33% - 20px);
+    /* 3 items per row */
+    max-width: none;
+  }
+}
+
+/* Mobile View: 2 items per row */
+@media (max-width: 768px) {
+  .dashboard-header-grid .food-card-horizontal {
+    flex: 1 1 calc(50% - 20px);
+    /* 2 items per row */
+  }
+}
+
+/* Smallest screens: 1 item per row */
+@media (max-width: 480px) {
+  .dashboard-header-grid .food-card-horizontal {
+    flex: 1 1 100%;
+    /* Full width */
+  }
+}
+
+/* Tablet View: 3 items per row */
+@media (max-width: 1500px) {
+  .dashboard-header-grid {
+    justify-content: center;
+  }
+
+  .dashboard-header-grid .food-card-horizontal {
+    flex: 1 1 calc(33.33% - 20px);
+    /* 3 items per row */
+    max-width: none;
+  }
+}
+
+
+.print-label {
+  display: none;
+  font-size: 12px;
+  margin-left: 5px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.Pending-Button:hover .print-label {
+  display: block;
+}
+
+/* .custom-input.form-control {
+  background-color: #f5f7f4fb;
+} */
+
+input::file-selector-button {
+  border: none;
+  border-radius: 3px;
+  background-color: #eaece8;
+}
+
+.added-item-text {
+  border: 1px solid #e6d5a2;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.added-item-text-info {
+  border: 1px solid #96c4f5;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+/* 31/1/2025 */
+
+menucategory-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.edit-button {
+  color: white;
+}
+
+.delete-button {
+  color: white;
+}
+
+/* .food-grid-container{
+  text-align: center;
+  font-size: 18px;
+  color: rgb(119, 119, 119);
+  background-color: rgba(21, 190, 119, 0.086);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+} */
+
+/* AdminTable CSS   */
+/* AdminTable CSS   */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.table {
+  color: #133E87;
+  font-weight: 400;
+  font-size: 1rem;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+.overflow {
+  overflow: none;
+}
+
+.table td {
+  vertical-align: middle;
+  line-height: 15px;
+}
+
+.table th {
+  line-height: 15px;
+}
+
+.Available,
+.Reserved {
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+@media (min-width: 344px) and (max-width: 430px) {
+  .table {
+    table-layout: fixed;
+    width: 100%;
+    padding: 5px;
+
+  }
+
+  .number {
+    width: 45px;
+  }
+
+  .edit {
+    width: 50px;
+  }
+
+  .delete {
+    width: 80px;
+  }
+
+  .Available,
+  .Reserved {
+    font-size: 0.7rem;
+  }
+
+  .qr {
+    width: 90px;
+  }
+
+  .status {
+    width: 90px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .user {
+    width: 350px;
+  }
+}
+
+@media (min-width:1024px) {
+
+  .edit {
+    width: 80px;
+  }
+
+  .delete {
+    width: 80px;
+  }
+
+  .icon {
+    padding: 0px;
+  }
+
+  .number {
+    width: 300px;
+  }
+
+  .status {
+    width: 400px;
+  }
+
+  .qr {
+    width: 300px;
+
+  }
+
+
+}
+
+.no-records {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.search-bar-feedback textarea {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  background-color: transparent;
+  color: #b6afaf;
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 5px;
+}
+
+.payment-option.disabled {
+  pointer-events: none;
+  /* Disable interaction */
+  opacity: 0.5;
+  /* Optional: Make it look disabled */
+}
+
+.payment-option.selected {
+  background-color: #d1e7dd;
+  /* Optional: Add a highlight for the selected payment method */
+  border: 2px solid #28a745;
+  /* Optional: Add a green border to show it's selected */
+}
+
+.progresscontainer {
+  text-align: center;
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard-tableOrder {
+  display: grid;
+}
+
+/* 1 card per row by default (mobile) */
+@media(max-width: 768px) {
+  .dashboard-tableOrder {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2 cards per row for tablets */
+@media(min-width: 768px) and(max-width: 1024px) {
+  .dashboard-tableOrder {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 cards per row for desktops */
+@media(min-width: 1024px) {
+  .dashboard-tableOrder {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .filter {
+    width: 100%;
+    display: grid;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .filter {
+    display: flex;
+  }
+}
+
+.table td {
+  text-align: center;
+}
+
+.opacity-0 {
+  opacity: 0.5;
+}
+
+.p-datatable .p-column-header-content {
+  justify-content: center;
+  color: #133E87 !important;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Remove or customize default text color in PrimeReact DataTable */
+.p-datatable p,
+.p-datatable span,
+.p-datatable .p-datatable-tbody p,
+.p-datatable .p-datatable-tbody span,
+.p-datatable .p-datatable-emptymessage {
+  color: inherit !important;
+  /* Reset text color */
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.primeBody {
+  color: #133E87 !important;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Center align empty message text in PrimeReact DataTable */
+.p-datatable .p-datatable-emptymessage {
+  text-align: center !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-paginator {
+  justify-content: end;
+}
+
+.w-10 {
+  width: 200px;
+}
+
+.w-7 {
+  width: 70px;
+}
+
+/* react-date-picker CSS  */
+
+/* Style the DatePicker container */
+.custom-datepicker {
+  width: 100%;
+  max-width: 300px;
+
+}
+
+/* Remove month dropdown */
+.custom-datepicker select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background: none !important;
+  padding-right: 0 !important;
+}
+
+/* input */
+.custom-datepicker .react-date-picker__wrapper {
+  width: 100%;
+  border-radius: 8px;
+  padding: 3px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+/* Calender Popup */
+.custom-datepicker .react-calendar {
+  max-width: 80%;
+  font-size: 16px;
+  margin-top: 5px;
+  position: absolute !important;
+}
+
+.react-calendar__navigation button:disabled {
+  min-width: 30px;
+  background: none;
+}
+
+/* This class display months */
+.custom-datepicker .react-calendar__year-view .react-calendar__tile {
+  padding: 5px;
+  height: 40px;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+/* Remove background & border from the selected month */
+.react-calendar__tile:disabled {
+  background: none !important;
+  color: inherit !important;
+}
+
+@media (max-width: 768px) {
+  .custom-datepicker {
+    max-width: 100%;
+  }
+
+  .custom-datepicker .react-calendar {
+    font-size: 14px;
+    margin-left: 30%;
+  }
+
+  .custom-datepicker .react-calendar__tile {
+    padding: 8px;
+  }
+}
+
+/* AdminTable CSS   */
+/* Remove spin buttons in Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove spin buttons in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* MenuItems pagination CSS */
+
+.page-link {
+  border: none;
+
+}
+
+.page-item.active .page-link,
+.pagination-light .page-item.active .page-link {
+  background: #eff6ff;
+  border-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.page-item:not(.active),
+.page-item:not(.active-circle),
+.page-item:not(.active-bordered),
+.page-item:not(.active-round) {
+  color: #6b7280;
+}
+.table th {
+  line-height: 15px;
+  background: rgb(41, 116, 140);
+  color: white;
+}
+
+.p-datatable .p-column-header-content {
+  display: inline;
+  color:white !important;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.primeBody {
+  color: rgba(0, 0, 0, 0.87) !important;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+.happy{
+  color:#eafaf3;
+ font-style: normal !important;
+}
+.order-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  padding: 15px;
+  z-index: 1000;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.add-cart-btn {
+  background: #DA6317;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+}

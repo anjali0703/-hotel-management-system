@@ -1,0 +1,46 @@
+.container {
+  padding:  30px 0px;
+
+  min-height: 100vh;
+}
+
+.grid-combo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.table-card {
+  background: rgb(246, 246, 246);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.table-card.red {
+  border-left: 6px solid red;
+  background:#f9423c14;
+}
+
+.table-card.green {
+      background: rgb(200, 253, 230);
+  border-left: 6px solid green;
+}
+
+.order-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.paid {
+  color: green;
+  font-weight: bold;
+}
+
+.unpaid {
+  color: red;
+  font-weight: bold;
+}

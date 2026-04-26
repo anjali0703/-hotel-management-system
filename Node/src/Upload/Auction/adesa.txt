@@ -1,0 +1,24 @@
+Database Name = buysmart_client
+--------------------------------------------------------------------------------
+isadminusers
+isauctionassignments
+isauctionbuyers
+isauctionfees
+isauctions
+isautochecks
+iscarfaxes
+iscommonissues
+iscrons
+isflashmessages
+isitemformulas
+isparameters
+ispermissions
+issheetnames
+isshippingcosts
+istooltips
+istootipfields
+isuserauctionassignments
+isuserpermissions
+isusers
+isusertypepermissions
+isusertypes
