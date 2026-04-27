@@ -64,11 +64,13 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "https://your-vercel-app.vercel.app"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
-
 global.io = io;
 
 io.on("connection", (socket) => {
