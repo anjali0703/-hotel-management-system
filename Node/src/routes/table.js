@@ -249,8 +249,10 @@ router.get("/qr/:tableNo", async (req, res) => {
   try {
     const tableNo = req.params.tableNo;
 
-    // 👉 This is your frontend URL (CHANGE if needed)
-    const url = `http://localhost:3000/MenuItems?table=${tableNo}`;
+    const frontendURL =
+      process.env.FRONTEND_URL || "http://localhost:3000";
+
+    const url = `${frontendURL}/MenuItems?table=${tableNo}`;
 
     const qr = await QRCode.toDataURL(url);
 

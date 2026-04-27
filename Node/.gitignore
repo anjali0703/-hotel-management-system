@@ -15,9 +15,6 @@ pids/
 *.seed
 *.pid.lock
 
-# Uploads (VERY IMPORTANT in your project)
-uploads/
-public/uploads/
 
 # OS files
 .DS_Store
