@@ -215,19 +215,26 @@ const handleOnlinePayment = async () => {
                 ₹{totalPrice}
               </span>
             </div>
+            <div className="mb-3 d-flex align-items-center gap-3 text-dark">
+  {/* <div className="p-2 bg-light rounded-circle d-flex align-items-center justify-content-center">
+     <ShoppingBag size={20} className="text-primary " />
+  </div> */}
+  <h5 className="mb-0 fw-bold tracking-tight ml-1">Confirm Order</h5>
+</div>
+<div className="d-flex ">
 
             {/* NORMAL MODE */}
             {paymentStep === "IDLE" && (
               <>
                 <button
-                  className="pay-btn"
+                  className="pay-place-order-btn "
                   onClick={handleOnlinePayment}
                 >
-                  Pay Now (UPI)
+                  UPI
                 </button>
 
                 <button
-                  className="place-order-btn"
+                  className="place-order-btn ml-4"
                   onClick={() =>
   onPlaceOrder("CASH", {
     customerName,
@@ -235,12 +242,12 @@ const handleOnlinePayment = async () => {
   })
 }
                 >
-                  <ShoppingBag size={20} />
-                  Confirm Order
+               
+                  CASH
                 </button>
               </>
             )}
-
+</div>
             {/* QR SHOWS UNTIL VERIFIED */}
             {paymentStep === "QR" && (
               <>

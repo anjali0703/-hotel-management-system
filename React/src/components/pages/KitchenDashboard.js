@@ -17,9 +17,9 @@ class Home extends Component {
             return (
                 <Fragment>
                     <MetaTags>
-                        <title>Kichen</title>
+                        <title>Kitchen</title>
                     </MetaTags>
-                    
+                  
                     <Content />
                 </Fragment>
             );
@@ -28,7 +28,7 @@ class Home extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>Kichen</title>
+                    <title>Kitchen</title>
                     <meta
                         name="description"
                         content="#"

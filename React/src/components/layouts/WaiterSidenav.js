@@ -71,57 +71,12 @@ class Sidenav extends Component {
               </Link>
             </li>
 
-            {/*  Tables  */}
-            <li className="menu-item">
-              <Link to="/Tables">
-                <span>
-                  <i class="fa-solid fa-th fs-16" style={{ width: "10%" }}></i>Tables
-                </span>
-              </Link>
-            </li>
-
+          
          
 
           </Accordion>
 
-          {/* Order Report */}
-          <li className="menu-item">
-            <Link to="/OrderReport">
-              <span>
-                <i class="fa-solid fa-file fs-16" style={{ width: "10%" }}></i>Order Report
-              </span>
-            </Link>
-          </li>
-
-          {/* Order Average */}
-          <li className="menu-item">
-            <Link to="/AverageOrder">
-              <span>
-                <i class="fa-solid fa-magnifying-glass-chart" style={{ width: "10%" }}></i>Average Order
-              </span>
-            </Link>
-          </li>
-
-    
-
-          {/* Popular Item */}
-          <li className="menu-item">
-            <Link to="/PopularOrder">
-              <span>
-                <i class="fa-solid fa-burger" style={{ width: "10%" }}></i>Popular Order
-              </span>
-            </Link>
-          </li>
-
-
-          {/* Customer feedback Report */}
-          <li className="menu-item">
-            <Link to="/CustomerFeedbackReport">
-              <span>
-                <i class="fa-solid fa-comment-dots" style={{ width: "10%" }}></i>Customer feedback Report
-              </span>
-            </Link>
-          </li>
+  
 
         </Scrollbar>
       </Fragment>

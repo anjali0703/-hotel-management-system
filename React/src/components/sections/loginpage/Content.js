@@ -19,6 +19,8 @@ const KITCHEN_ROLE = process.env.REACT_APP_KITCHEN_ROLE_ID;
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [errorMessage, setErrorMessage] = useState("");
+  const [validated, setValidated] = useState(false);
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -66,36 +68,51 @@ function Login() {
   };
 
   return (
-    <div className="app">
+     <div className="app">
       <div className="content-container">
         <div className="login-container">
-
-          <h2>HMM Login</h2>
-
-          <form onSubmit={handleSubmit} className="login-form">
-
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input-field"
-            />
-
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input-field"
-            />
-
-            <button type="submit" className="login-button">
-              Login
-            </button>
-
-          </form>
-
+          <div className="content">
+            <div className="logo-container">
+              <h2>HMM</h2>
+            </div>
+            <h1 style={{ color: '#000000' }}>Login To Your Account</h1>
+            <form className="login-form">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                className="input-field"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                className="input-field"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="button" onClick={handleSubmit} className="login-button">
+                Login
+              </button>
+            </form>
+            {/* <div className="login-options" style={{ marginTop: "25px" }}>
+              <ul>
+                <li>
+                  <Link to="/KitchenOrder" className="role-link">Login as Kitchen Staff</Link>
+                </li>
+                <li>
+                  <Link to="/WaitstaffOrder" className="role-link">Login as Wait Staff</Link>
+                </li>
+                <li>
+                  <Link to="/Dashboard" className="role-link">Login as Admin</Link>
+                </li>
+              </ul>
+            </div> */}
+          </div>
         </div>
       </div>
     </div>

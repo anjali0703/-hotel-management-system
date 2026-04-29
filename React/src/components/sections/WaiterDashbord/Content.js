@@ -258,131 +258,80 @@ const isMine =
 
       {activeOrders.slice(0, 3).map((o, i) => (
       
- <div key={i} className="d-flex justify-content-between align-items-center">
-    <div>
-          <div >
-          {o.Order.map((it, x) => (
-            <div key={x}>
-              {it.ItemID?.name}   x{it.ItemQty}
-            </div>
-          ))}
-              <p>Status: {o.Status}</p>
-          </div>
-             <div className="btn-row">
-
-     {activeOrders.some(
-  (o) => o.PaymentMethod === "CASH" && o.PaymentStatus !== "PAID"
-) && (
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-
-      const order = activeOrders.find(
-        (o) => o.PaymentMethod === "CASH" && o.PaymentStatus !== "PAID"
-      );
-
-      if (order) handlePayment(order._id);
-    }}
-  >
-    Cash
-  </button>
-)}
-
-      {activeOrders.some(
-  (o) =>
-    o.PaymentMethod === "ONLINE" &&
-    o.PaymentStatus === "PENDING"
-) && (
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-
-      const order = activeOrders.find(
-        (o) =>
-          o.PaymentMethod === "ONLINE" &&
-          o.PaymentStatus === "PENDING"
-      );
-
-      if (order) verifyPayment(order._id);
-    }}
-  >
-    Verify
-  </button>
-)}
-
-        {activeOrders.some((o)=>o.Status==="Ready") && (
-          <button onClick={(e)=>{e.stopPropagation();markServed(activeOrders[0]._id)}}>Served</button>
-        )}
-
-      </div>
-               
-    
+<div key={i} className=" moj d-flex justify-content-between align-items-center">
+  <div >
+    <div >
+      {o.Order.map((it, x) => (
+        <div key={x}>
+          {it.ItemID?.name} x{it.ItemQty}
         </div>
-          <p>
-      Payment:
-      <b style={{ color: o.PaymentStatus === "PAID" ? "green" : "red" }}>
-        {o.PaymentStatus}
-      </b> 
-    </p>
-        </div>
-        
       ))}
 
-      {/* {activeOrders.some((o) => o.Status === "Ready") && (
-        <div className="ready-pill">🍽 Ready</div>
-      )} */}
+      <p>Status: {o.Status}</p>
+    </div>
 
-      {/* <div className="btn-row">
-
-     {activeOrders.some(
-  (o) => o.PaymentMethod === "CASH" && o.PaymentStatus !== "PAID"
-) && (
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-
-      const order = activeOrders.find(
-        (o) => o.PaymentMethod === "CASH" && o.PaymentStatus !== "PAID"
-      );
-
-      if (order) handlePayment(order._id);
-    }}
-  >
-    Cash
-  </button>
-)}
-
-      {activeOrders.some(
-  (o) =>
-    o.PaymentMethod === "ONLINE" &&
-    o.PaymentStatus === "PENDING"
-) && (
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-
-      const order = activeOrders.find(
-        (o) =>
-          o.PaymentMethod === "ONLINE" &&
-          o.PaymentStatus === "PENDING"
-      );
-
-      if (order) verifyPayment(order._id);
-    }}
-  >
-    Verify
-  </button>
-)}
-
-        {activeOrders.some((o)=>o.Status==="Ready") && (
-          <button onClick={(e)=>{e.stopPropagation();markServed(activeOrders[0]._id)}}>Served</button>
+    {/* BUTTONS BASED ON CURRENT ORDER */}
+    <div className="btn-row">
+      
+      {/* CASH BUTTON */}
+      {o.PaymentMethod === "CASH" &&
+        o.PaymentStatus !== "PAID" && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePayment(o._id);
+            }}
+          >
+            Cash
+          </button>
         )}
 
-      </div> */}
+      {/* VERIFY BUTTON */}
+      {o.PaymentMethod === "ONLINE" &&
+        o.PaymentStatus === "PENDING" && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              verifyPayment(o._id);
+            }}
+          >
+            Verify
+          </button>
+        )}
+
+      {/* SERVED BUTTON */}
+      {o.Status === "Ready" && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            markServed(o._id);
+          }}
+        >
+          Served
+        </button>
+      )}
+    </div>
+  </div>
+
+  {/* PAYMENT STATUS */}
+  <p>
+    Payment:
+    <b
+      style={{
+        color: o.PaymentStatus === "PAID" ? "green" : "red",
+        marginLeft: "5px",
+      }}
+    >
+      {o.PaymentStatus}
+    </b>
+  </p>
+</div>
+        
+      ))}
     </div>
   )}
 
-  {t.status === "Occupied" &&
+  {t.status === "Occupied" && isMine&&
    activeOrders.length === 0 &&
    t.orders.every((x)=>x.PaymentStatus==="PAID") && (
     <button

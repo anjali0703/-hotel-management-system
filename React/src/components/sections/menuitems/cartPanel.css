@@ -157,26 +157,26 @@
 
 /* 5. FOOTER & BUTTON */
 .cart-footer {
-  padding: 30px;
+  padding: 10px 30px 20px 30px;
   background: white;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid #e7eef6;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 7px;
 }
 
 .summary-label { color: #94a3b8; font-weight: 600; }
 .summary-total { font-size: 24px; font-weight: 900; color: #0f172a; }
 
 .place-order-btn {
-  width: 100%;
+  width: 50%;
   background: #4f46e5;
   color: white;
-  padding: 20px;
+  padding: 12px;
   border-radius: 18px;
   border: none;
   font-weight: 800;
@@ -195,7 +195,29 @@
   box-shadow: 0 15px 25px rgba(79, 70, 229, 0.3);
   transform: translateY(-2px);
 }
+.pay-place-order-btn {
+  width: 50%;
+  background: #35ac33;
+  color: white;
+  padding: 12px;
+  border-radius: 18px;
+  border: none;
+  font-weight: 800;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+  transition: 0.3s;
+}
 
+.pay-place-order-btn:hover {
+  background: #36b93d;
+  box-shadow: 0 15px 25px rgba(70, 229, 83, 0.3);
+  transform: translateY(-2px);
+}
 /* EMPTY STATE */
 .empty-state {
   text-align: center;
