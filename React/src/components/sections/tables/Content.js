@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal } from "react-bootstrap";
+import { Modal ,Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -244,16 +244,37 @@ const downloadQR = () => {
 
 const shareQR = async () => {
   try {
-    if (navigator.share) {
-      // ✅ MOBILE (native share popup)
+   
+    const arr = selectedQR.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    // 2. Create the file immediately from the byte array
+    const file = new File([u8arr], `Table-${selectedTable}.png`, { type: mime });
+
+    // 3. Share
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
         title: `Table ${selectedTable}`,
-        text: "Scan to order food",
-        url: selectedQR
+        text: "Scan to order",
+        files: [file],
       });
-    } 
+    } else {
+      // Fast fallback to clipboard
+      await navigator.clipboard.writeText(selectedQR);
+      toastr.info("Link copied to clipboard!");
+    }
   } catch (err) {
-    console.error(err);
+    if (err.name !== "AbortError") {
+      console.error("Fast share failed:", err);
+      toastr.error("Could not share image.");
+    }
   }
 };
 
@@ -305,14 +326,14 @@ const shareQR = async () => {
   src={qrMap[row.Tnumber]}
   alt="QR"
   width="60"
-  style={{ cursor: "pointer" }}
+  style={{ cursor: "pointer",color:"blue" }}
   onClick={(e) => {
     e.stopPropagation();
     openQRModal(qrMap[row.Tnumber], row.Tnumber);
   }}
 />
     ) : (
-      "Loading..."
+      "..."
     )
   )}
 />
@@ -399,14 +420,23 @@ const shareQR = async () => {
   <Modal.Body style={{ textAlign: "center" }}>
     <img src={selectedQR} alt="QR" style={{ width: "250px" }} />
 
-    <div style={{ marginTop: "15px", display: "flex", gap: "10px", justifyContent: "center" }}>
-      <button className="btn btn-success" onClick={downloadQR}>
+    <div style={{ marginTop: "0px", display: "flex", gap: "10px", justifyContent: "center" }}>
+        <Modal.Footer className="justify-content-center gap-3 border-0 p-3  shadow-sm">
+         <Button 
+         variant="outline-dark"
+      className="d-flex align-items-center justify-content-center py-2 px-4 shadow"
+      style={{ borderRadius: '50px', minWidth: '150px', fontWeight: '600' }}onClick={downloadQR}>
+              <i className="pi pi-download me-2"></i>
         Download
-      </button>
+      </Button>
 
-      <button className="btn btn-primary" onClick={shareQR}>
-        Share
-      </button>
+        <Button variant="outline-dark"
+      className="d-flex align-items-center justify-content-center py-2 px-4 shadow"
+      style={{ borderRadius: '50px', minWidth: '150px', fontWeight: '600' }} onClick={shareQR}>
+           <i className="pi pi-share-alt me-2"></i> 
+        Share 
+      </Button>
+      </Modal.Footer>
     </div>
   </Modal.Body>
 </Modal>

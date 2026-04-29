@@ -1,11 +1,11 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component, Fragment, useEffect } from 'react';
 import MetaTags from "react-meta-tags";
 import Navbar from '../layouts/AdminNavbar';
-
+import Quickbar from '../layouts/Quickbar';
 import Recentactivity from '../layouts/Recentactivity';
 import Setting from '../layouts/Setting';
 import Sidenav from '../layouts/Sidenav';
-import Content from '../sections/Order/Content';
+import Content from '../sections/CategoriesReport/Content';
 
 class User extends Component {
     navToggle = () => {
@@ -18,7 +18,7 @@ class User extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>HMM | User</title>
+                    <title>CategoriesReport</title>
                     <meta
                         name="description"
                         content="#"

@@ -54,7 +54,7 @@ const OrderPanel = ({ tableNo, onClose }) => {
           ItemQty: i.qty,
           Status: "Pending"
         })),
-        Status: "Running",
+        Status: "Confirm",
         PaymentMethod: "Pending",
         Bill: total
       };

@@ -26,6 +26,7 @@ PaymentMethod: {
 paidAt: Date,
   Bill: { type: String, required: false },
   OrderBy: { type: mongoose.Schema.Types.ObjectId, ref: 'isuser', required: false },
+  CustomerName: { type: String, default: null },
   active: { type: Boolean, default: true },
   deleted: { type: Boolean, default: false },
   createdBy: { type: String, default: null },

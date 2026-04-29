@@ -5,7 +5,7 @@ import Navbar from '../layouts/AdminNavbar';
 import Recentactivity from '../layouts/Recentactivity';
 import Setting from '../layouts/Setting';
 import Sidenav from '../layouts/Sidenav';
-import Content from '../sections/Order/Content';
+import Content from '../sections/OrderReport/Content';
 
 class User extends Component {
     navToggle = () => {
@@ -18,7 +18,7 @@ class User extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>HMM | User</title>
+                    <title>Category Report</title>
                     <meta
                         name="description"
                         content="#"

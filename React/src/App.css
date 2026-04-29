@@ -1996,10 +1996,14 @@ input::-webkit-inner-spin-button {
   text-align: center;
   font-family: 'Roboto', sans-serif;
 }
-.happy{
+ .happy{
   color:#eafaf3;
  font-style: normal !important;
 }
+td.haappy {
+  padding: 2px 7px !important;
+}
+
 .order-panel {
   position: fixed;
   right: 0;
@@ -2024,4 +2028,74 @@ input::-webkit-inner-spin-button {
   border: none;
   padding: 5px 10px;
   border-radius: 8px;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;   /* IE / Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.tableborder th,
+.tableborder td {
+  border-bottom: 1px dashed #4b4b4b!important;
+    border-top: 1px dashed #4b4b4b!important;
+}
+.table-dashed tbody tr td {
+  border-bottom: 1px dashed #4b4b4b !important;
+}
+
+.table-dashed tbody tr:last-child td {
+  border-bottom: none !important;
+}
+.containermodle{
+   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+   padding:"10px";
+   margin: "50px";
+}
+.header th{
+  background: #f0f2f8;
+  color: black;
+    font-weight: 500 !important;
+}
+/* Custom styling for date/month inputs */
+input[type="date"], input[type="month"] {
+    padding: 10px 15px;
+    color: #495057;
+}
+
+/* Hover effect for the custom dropdown */
+.list-group-item-action:hover {
+    background-color: #f0f7ff !important;
+    color: #0d6efd !important;
+}
+
+/* Style the calendar icon inside inputs */
+input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.5); /* Makes the icon subtler */
+}
+.p-datatable .total-row {
+    font-weight: 700;
+    background-color: #f2f2f2 !important;  /* light grey */
+}
+
+.p-datatable .total-row td {
+    background-color: #f2f2f2 !important;  /* ensures all cells */
+}
+.add-btn {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.add-btn i{    margin-bottom: .0rem;}
+* {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
 }

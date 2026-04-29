@@ -17,7 +17,7 @@ import Navbar from '../layouts/AdminNavbar';
 import Recentactivity from '../layouts/Recentactivity';
 import Setting from '../layouts/Setting';
 import Sidenav from '../layouts/Sidenav';
-import Content from '../sections/home/Content';
+import Content from '../sections/Dashboard/Content';
 
 class Home extends Component {
     render() {

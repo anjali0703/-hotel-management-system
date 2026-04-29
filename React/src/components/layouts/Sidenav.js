@@ -86,13 +86,13 @@ class Sidenav extends Component {
                 </span>
               </Link>
             </li>
-                 <li className="menu-item">
+                 {/* <li className="menu-item">
               <Link to="/Order">
                 <span>
                   <i class="fa-solid fa-th fs-16" style={{ width: "10%" }}></i>Order
                 </span>
               </Link>
-            </li>
+            </li> */}
 
             {/* Order History */}
             <li className="menu-item">
@@ -106,13 +106,13 @@ class Sidenav extends Component {
           </Accordion>
 
           {/* Order Report */}
-          <li className="menu-item">
+          {/* <li className="menu-item">
             <Link to="/OrderReport">
               <span>
                 <i class="fa-solid fa-file fs-16" style={{ width: "10%" }}></i>Order Report
               </span>
             </Link>
-          </li>
+          </li> */}
 
           {/* Order Average */}
           <li className="menu-item">

@@ -25,6 +25,12 @@ const User = React.lazy(() => import("./components/pages/User"));
 const MenuItems = React.lazy(() => import("./components/pages/MenuItems"));
 const MenuCategory = React.lazy(() => import("./components/pages/MenuCategory"));
 const Tables = React.lazy(() => import("./components/pages/Tables"));
+const OrderHistory = React.lazy(() => import("./components/pages/OrderHistory"));
+const PopularOrder = React.lazy(() => import("./components/pages/PopularOrder"));
+// const OrderReport = React.lazy(() => import("./components/pages/OrderReport"));
+const CategoriesReport = React.lazy(() => import("./components/pages/CategoriesReport"));
+// const CustomerFeedbackReport = React.lazy(() => import("./components/pages/CustomerFeedbackReport"));
+const AverageOrder= React.lazy(() => import("./components/pages/AverageOrder"));
 
 const WaiterDashboard = React.lazy(() => import("./components/pages/WaiterDashboard"));
 const KitchenDashboard = React.lazy(() => import("./components/pages/KitchenDashboard"));
@@ -104,6 +110,12 @@ const AppRoutes = () => {
         <Route path="/MenuItems" element={<MenuItems />} />
         <Route path="/Tables" element={<Tables />} />
         <Route path="/Order" element={<Order/>} />
+         <Route path="/OrderHistory" element={<OrderHistory />} />
+          {/* <Route path="/OrderReport" element={<OrderReport />} /> */}
+          <Route path="/AverageOrder" element={<AverageOrder />} />
+       <Route path="/CategoriesReport" element={<CategoriesReport/>}/>
+        <Route path="/PopularOrder" element={<PopularOrder />} /> 
+          {/* /<Route path="/CustomerFeedbackReport" element={<CustomerFeedbackReport />}/>  */} 
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Routes>
     );

@@ -47,50 +47,53 @@ router.post("/save", async (req, res) => {
 });
 router.get("/dashboard", async (req, res) => {
   try {
-    // 1. get all active tables
-    const tables = await Tables.find({ active: true, deleted: false });
+    const tables = await Tables.find()
+      .populate("assignedWaiter", "name");
 
-    // 2. get all active orders
-    const orders = await Order.find({ active: true })
-      .populate("Order.ItemID")
-      .populate("OrderBy");
+    const result = await Promise.all(
+      tables.map(async (table) => {
 
-    // 3. build dashboard
-    const dashboard = tables.map((table) => {
+        const orders = await Order.find({
+          TableNo: table.Tnumber,
+          active: true,
+          Status: { $nin: ["Completed", "Cancelled"] }
+        }).populate("Order.ItemID");
 
-      // FIX: support both naming styles safely
-      const tableNumber = table.TableNo || table.Tnumber;
+        return {
+          tableId: table._id,
+          tableNo: table.Tnumber,
+          Capacity: table.capacity,
+          status: table.status,
+            // ✅ KEEP FULL OBJECT
+  assignedWaiter: table.assignedWaiter || null,
 
-      const tableOrders = orders.filter(
-        (o) => String(o.TableNo) === String(tableNumber)
-      );
+  waiterName: table.assignedWaiter?.name || "Not assigned",
+          orders,
+          totalOrders: orders.length,
+          totalItems: orders.reduce(
+            (sum, o) =>
+              sum +
+              o.Order.reduce(
+                (a, i) => a + i.ItemQty,
+                0
+              ),
+            0
+          ),
+          isPaid:
+            orders.length > 0 &&
+            orders.every(
+              (o) => o.PaymentStatus === "PAID"
+            )
+        };
+      })
+    );
 
-      const isOccupied =table.status==="Occupied";
+    res.json(result);
 
-const isPaid =
-  tableOrders.length > 0 &&
-  tableOrders.some((o) => o.Status === "Completed");
-
-      const totalItems = tableOrders.reduce((sum, order) => {
-        return sum + order.Order.reduce((s, i) => s + i.ItemQty, 0);
-      }, 0);
-
-      return {
-        tableId: table._id,
-        tableNo: tableNumber,
-        status: isOccupied ? "Occupied" : "Available",
-        assignedWaiter: table.assignedWaiter, 
-        orders: tableOrders,
-        totalOrders: tableOrders.length,
-        totalItems,
-        isPaid,
-      };
-    });
-
-    res.status(200).json(dashboard);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 // =======================
@@ -339,16 +342,15 @@ router.put("/assign-manual/:tableNo", async (req, res) => {
     const tableNo = req.params.tableNo;
     const { waiterId } = req.body;
 
-    const updated = await Tables.findOneAndUpdate(
-      { Tnumber: tableNo },
-      {
-        status: "Occupied",
-        assignedWaiter: waiterId,
-        occupiedAt: new Date(),
-      },
-      { new: true }
-    );
-
+ const updated = await Tables.findOneAndUpdate(
+  { Tnumber: tableNo },
+  {
+    status: "Occupied",
+    assignedWaiter: waiterId,
+    occupiedAt: new Date(),
+  },
+  { new: true }
+).populate("assignedWaiter", "name");
     if (!updated) {
       return res.status(404).json({ message: "Table not found" });
     }

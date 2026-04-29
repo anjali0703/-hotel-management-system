@@ -34,16 +34,21 @@ const tableNo = queryParams.get("table") || localStorage.getItem("tableNo");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   // ... add this state near your other states
+  const [orderNote, setOrderNote] = useState("");
+const [customerName, setCustomerName] = useState("");
 const [activeOrders, setActiveOrders] = useState([]);
 const [cart, setCart] = useState(() => {
   const saved = localStorage.getItem("tableCart");
   return saved ? JSON.parse(saved) : {};
 });
   const [showCart, setShowCart] = useState(false);
-  
+  const [showBillPreview, setShowBillPreview] = useState(false);
+  const isQROrder = queryParams.get("table") ? true : false;
+const [billData, setBillData] = useState(null);
   const API = process.env.REACT_APP_API_URL;
   const IMG_URL = process.env.REACT_APP_IMAGE_URL;
     const { user } = useAuth();
+    const [nameError, setNameError] = useState("");
   const currentCart = cart[tableNo] || [];
     const roleId = user?.userTypeId;
   
@@ -96,19 +101,7 @@ useEffect(() => {
     }
   }
 }, [items]);
-useEffect(() => {
-  if (!tableNo) return;
 
-  const assignTable = async () => {
-    try {
-      await axios.post(`${API}/tables/assign/${tableNo}`);
-    } catch (err) {
-      console.error("Assign error:", err);
-    }
-  };
-
-  assignTable();
-}, [tableNo]);
 useEffect(() => {
   const fetchActiveOrders = async () => {
     if (!tableNo) return;
@@ -294,7 +287,7 @@ const handleAddToOrder = (item) => {
 
   setShowCart(true);
 };
-const placeOrder = async () => {
+const placeOrder = async (paymentMethod = "CASH") => {
   const tableCart = cart[tableNo];
 
   if (!tableCart || tableCart.length === 0) {
@@ -302,20 +295,30 @@ const placeOrder = async () => {
     return;
   }
 
-  const orderData = {
-    TableNo: tableNo,
-    Status: "Pending",
-    PaymentMethod: "Pending",
-    Order: tableCart.map((item) => ({
-      ItemID: item._id,
-      ItemQty: item.qty,
-      Status: "Pending"
-    }))
-  };
+ // ❗ VALIDATION FOR QR USER NAME
+if (isQROrder && !customerName.trim()) {
+  setNameError("Please enter your name");
+  return;
+}
+
+const orderData = {
+  TableNo: tableNo,
+  CustomerName: isQROrder ? customerName : null,
+  Note: orderNote || null,
+
+  Status: "CONFIRMED",
+  PaymentMethod: paymentMethod,
+
+  Order: tableCart.map((item) => ({
+    ItemID: item._id,
+    ItemQty: item.qty,
+    Status: "CONFIRMED"
+  }))
+};
 
   await axios.post(`${API}/orders/add`, orderData);
 
-  // remove only that table cart
+  // clear cart
   setCart((prev) => {
     const updated = { ...prev };
     delete updated[tableNo];
@@ -352,6 +355,27 @@ const fullList = [
   ...categories
 ]; 
 
+const generateInvoice = async () => {
+  try {
+    const res = await axios.get(`${API}/orders/invoice/${tableNo}`);
+    
+    const pdfUrl = res.data.pdf;
+
+    window.open(pdfUrl, "_blank");
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+const previewBill = async () => {
+  try {
+    const res = await axios.get(`${API}/orders/invoice/${tableNo}`);
+    setBillData(res.data);
+    setShowBillPreview(true);
+  } catch (err) {
+    console.error(err);
+  }
+};
 return (
     <>
   <div className="app">
@@ -520,10 +544,56 @@ return (
               </div>
             </div>
           </div>
+       
         </div>
       ))}
+      {activeOrders.some(o => o.Status === "Co") && (
+  <div className="bill-actions">
+    <button onClick={previewBill}>Preview Bill</button>
+    <button onClick={generateInvoice}>Download Bill</button>
+  </div>
+)}
+
     </div>
   </div> 
+)}{showBillPreview && billData && (
+  <div className="bill-modal">
+    <div className="bill-card">
+
+      <h2>Invoice Preview</h2>
+
+      <p>Table No: {billData.tableNo}</p>
+      <p>Waiter: {billData.waiter}</p>
+      <p>Date: {billData.date}</p>
+
+      <hr />
+
+      {billData.orders.map((order, i) => (
+        <div key={i}>
+          <h4>Order #{order.orderId}</h4>
+
+          {order.items.map((item, idx) => (
+            <p key={idx}>
+              {item.name} x {item.qty} = ₹{item.total}
+            </p>
+          ))}
+
+          <b>Total ₹{order.total}</b>
+          <hr />
+        </div>
+      ))}
+
+      <h3>Grand Total ₹{billData.grandTotal}</h3>
+
+      <img src={billData.qr} width="130" />
+
+      <div style={{marginTop:"15px"}}>
+        <button onClick={generateInvoice}>Download</button>
+        <button onClick={() => setShowBillPreview(false)}>Close</button>
+      </div>
+
+    </div>
+  </div>
 )}
     <CartPanel
   show={(isWaiter || isQR) && showCart}
@@ -532,6 +602,13 @@ return (
   onClose={() => setShowCart(false)}
   onPlaceOrder={placeOrder}
   onUpdateQty={handleUpdateQty} 
+  customerName={customerName}
+  setCustomerName={setCustomerName}
+  orderNote={orderNote}
+  setOrderNote={setOrderNote}
+  isQROrder={isQROrder}
+    nameError={nameError}          // ✅ ADD THIS
+  setNameError={setNameError}   
 />
   </>
 );

@@ -66,7 +66,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:3000",
-      "https://hotel-management-system-coral-seven.vercel.app/"
+      "https://hotel-management-system-coral-seven.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
