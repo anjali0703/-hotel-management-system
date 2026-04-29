@@ -18,7 +18,7 @@ class User extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>HMM | User</title>
+                    <title>User</title>
                     <meta
                         name="description"
                         content="#"

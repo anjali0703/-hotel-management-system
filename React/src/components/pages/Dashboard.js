@@ -24,7 +24,7 @@ class Home extends Component {
         return (
             <Fragment>
                 <MetaTags>
-                    <title>HMM | Dashboard</title>
+                    <title>Dashboard</title>
                     <meta
                         name="description"
                         content="#"

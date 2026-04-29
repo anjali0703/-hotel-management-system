@@ -576,39 +576,179 @@ router.get("/details/:id", async (req, res) => {
   }
 });
 // Example Express Route
-router.get('/dashboard/summary', async (req, res) => {
-  try {
-    // 1. Fetch total revenue and counts
-    const orders = await Order.find();
-    const totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0);
+// ================================================
+// FULL UPDATED /dashboard/summary
+// FIXED FOR YOUR ORDER SCHEMA
+// Uses Order[] items because no TotalAmount field
+// ================================================
 
-    // 2. Fetch Top Items (Aggregate query)
+router.get("/dashboard/summary", async (req, res) => {
+  try {
+    // ============================================
+    // DATES
+    // ============================================
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const currentYear = new Date().getFullYear();
+
+    // ============================================
+    // BASIC COUNTS
+    // ============================================
+    const totalOrders = await Order.countDocuments({
+      deleted: false,
+      active: true
+    });
+
+    const todayOrders = await Order.countDocuments({
+      deleted: false,
+      active: true,
+      createdDateTime: { $gte: today }
+    });
+
+    const activeTables = await Tables.countDocuments({
+      status: "Occupied"
+    });
+
+    const totalUsers = await User.countDocuments({
+      deleted: false,
+      active: true
+    });
+
+    // ============================================
+    // TOTAL REVENUE
+    // ============================================
+    const paidOrders = await Order.find({
+      deleted: false,
+      active: true,
+      PaymentStatus: "PAID"
+    }).populate("Order.ItemID", "price");
+
+    let totalRevenue = 0;
+
+    paidOrders.forEach((order) => {
+      order.Order.forEach((item) => {
+        const price = item.ItemID?.price || 0;
+        totalRevenue += price * item.ItemQty;
+      });
+    });
+
+    // ============================================
+    // MONTHLY REVENUE
+    // ============================================
+    const monthNames = [
+      "", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    let monthlyMap = {};
+
+    paidOrders.forEach((order) => {
+      const d = new Date(order.createdDateTime);
+      const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+
+      let amount = 0;
+
+      order.Order.forEach((item) => {
+        const price = item.ItemID?.price || 0;
+        amount += price * item.ItemQty;
+      });
+
+      monthlyMap[key] = (monthlyMap[key] || 0) + amount;
+    });
+
+    const monthlyRevenue = Object.keys(monthlyMap)
+      .sort()
+      .map((key) => {
+        const [year, month] = key.split("-");
+        return {
+          month: `${monthNames[month]} ${year}`,
+          total: monthlyMap[key]
+        };
+      });
+
+    // ============================================
+    // TOP ITEMS
+    // ============================================
     const topItems = await Order.aggregate([
-      { $unwind: "$items" },
-      { $group: { _id: "$items.name", count: { $sum: "$items.quantity" } } },
-      { $sort: { count: -1 } },
+      {
+        $match: {
+          deleted: false,
+          active: true
+        }
+      },
+      { $unwind: "$Order" },
+      {
+        $lookup: {
+          from: "ismenuitems",
+          localField: "Order.ItemID",
+          foreignField: "_id",
+          as: "menu"
+        }
+      },
+      { $unwind: "$menu" },
+      {
+        $group: {
+          _id: "$menu.name",
+          qty: { $sum: "$Order.ItemQty" }
+        }
+      },
+      { $sort: { qty: -1 } },
       { $limit: 5 }
     ]);
 
+    const formattedItems = topItems.map((x) => ({
+      name: x._id,
+      qty: x.qty
+    }));
+
+    // ============================================
+    // ORDER STATUS
+    // ============================================
+    const statusCounts = await Order.aggregate([
+      {
+        $match: {
+          deleted: false,
+          active: true
+        }
+      },
+      {
+        $group: {
+          _id: "$Status",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const formattedStatus = statusCounts.map((x) => ({
+      status: x._id,
+      count: x.count
+    }));
+
+    // ============================================
+    // FINAL RESPONSE
+    // ============================================
     res.json({
       stats: {
-        revenue: totalRevenue,
-        totalOrders: orders.length,
-        activeTables: 8, // Replace with dynamic logic
-        newCustomers: 12
+        totalRevenue,
+        totalOrders,
+        activeTables,
+        totalUsers,
+        todayOrders
       },
-      revenueTrend: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        values: [5000, 7000, 4500, 9000, 12000, 15000, 11000]
-      },
-      topItems: {
-        labels: topItems.map(i => i._id),
-        counts: topItems.map(i => i.count)
-      },
-      recentOrders: orders.slice(-5).reverse()
+
+      monthlyRevenue,
+      topItems: formattedItems,
+      statusCounts: formattedStatus
     });
+
   } catch (err) {
-    res.status(500).send(err);
+    console.log(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
   }
 });
 // UPDATE STATUS SOCKET

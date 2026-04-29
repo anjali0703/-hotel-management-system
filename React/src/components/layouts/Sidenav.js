@@ -39,7 +39,7 @@ class Sidenav extends Component {
             style={{ backgroundColor: "#29748c" }}
           >
             <Link className="pl-0 ml-0 text-center" to="/">
-              <h3 style={{ color: "#fff" }}>HMM</h3>
+              <h3 style={{ color: "#fff" }}>ORDER FOOD</h3>
             </Link>
           </div>
 
