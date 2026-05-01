@@ -301,6 +301,7 @@ if (isQROrder && !customerName.trim()) {
   return;
 }
 
+
 const orderData = {
   TableNo: tableNo,
   CustomerName: isQROrder ? customerName : null,
@@ -326,6 +327,24 @@ const orderData = {
   });
 
   setShowCart(false);
+};
+const getOrderTotal = (order) => {
+  if (!order?.Order || !items?.length) return 0;
+
+  return order.Order.reduce((sum, row) => {
+    // ✅ your real Mongo format
+    const itemId = row?.ItemID?.$oid;
+
+    // find matching menu item
+    const menuItem = items.find(
+      (m) => String(m._id) === String(itemId)
+    );
+
+    const qty = Number(row?.ItemQty || 0);
+    const price = Number(menuItem?.price || 0);
+
+    return sum + qty * price;
+  }, 0);
 };
 const handleUpdateQty = (productId, change) => {
   const tableNo = localStorage.getItem("tableNo");
@@ -367,6 +386,7 @@ const generateInvoice = async () => {
     console.error(err);
   }
 };
+
 const previewBill = async () => {
   try {
     const res = await axios.get(`${API}/orders/invoice/${tableNo}`);
@@ -524,7 +544,10 @@ return (
       {activeOrders.map((order, idx) => (
         <div key={idx} className="order-status-row">
           <div className="status-info">
+            <div className="d-flex justify-content-between">
             <p className="order-id">Order #{order._id.slice(-4)}</p>
+            {/* <p className="mr-0">Total: ₹{getOrderTotal(order)}</p> */}
+            </div>
             <div className="status-stepper">
               <div className={`step ${order.Status === 'Pending' ? 'active' : 'done'}`}>
                 <div className="step-circle"></div>
@@ -547,7 +570,7 @@ return (
        
         </div>
       ))}
-      {activeOrders.some(o => o.Status === "Co") && (
+      {activeOrders.some(o =>( o.Status === "CONFIRMED"&& o.Status === 'Ready' && o.Status === 'Preparing' )) && (
   <div className="bill-actions">
     <button onClick={previewBill}>Preview Bill</button>
     <button onClick={generateInvoice}>Download Bill</button>
@@ -583,7 +606,7 @@ return (
         </div>
       ))}
 
-      <h3>Grand Total ₹{billData.grandTotal}</h3>
+      <h3>Grand Total ₹{getOrderTotal}</h3>
 
       <img src={billData.qr} width="130" />
 
